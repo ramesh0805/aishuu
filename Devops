@@ -1,0 +1,298 @@
+DAY - 05
+
+
+use aws cli
+
+
+Account>Security Credentials>Access token
+mobaXterm , putty , NoMachine  -> terminal name
+AWS CLI doc -> aws documentation
+
+
+termianl commands:
+
+> which aws
+> aws configure
+  default region
+  json
+> clear
+> aws s3 ls    -> Shows all the s3 bucket files names
+> aws s3 mb <name> -> used to create s3 bucket
+
+
+use Scripts
+
+boto3 -> python script documentation
+
+
+
+DAY - 06
+
+
+
+
+Linux OS :
+ 
+
+> free
+> open source
+> Secure
+> Distributions (ubuntu ....)
+> fast
+
+
+> Kernel is a heart of OS
+> It is responsible for
+	1. Device Management
+	2. Memory Management
+	3. Process Management
+	4. Handling system calls
+
+
+
+Shell / bash comands:
+
+pwd
+ls
+ls -ltr   -> lists file properties
+cd
+cd ..
+cd ../..
+touch <filename>
+vi <filename>    then : wq!
+df -h -> disk usage
+nproc -> cpu
+free -> memory
+top -> to show all cpu,process management
+
+
+
+DAY - 07
+
+
+
+
+CRONJOB is used to execute a script at a particular timestamp.
+
+prerequisites: installed aws cli
+
+> To know this wite a command aws in terminal
+> connect to ec2 instance
+
+
+> bash
+> aws
+> aws configure
+
+> vim aws\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_resource\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_tracker.sh
+click esc
+
+#!/bin/bash (dash)
+
+
+###################
+# Author: Ramesh
+# Date: 13-sept
+# Version: v1
+# This script will report AWS resource usage
+###################
+
+
+AWS CLI reference -> search in google
+
+Write in a file
+
+set -x : It put script in a debug mode
+
+echo " Print list of s3 buckets"
+aws s3 ls > resourceTracker -> list s3 buckets and redirect it into file
+
+aws ec2 describe-instances >> resourceTracker:q! -> list EC2 instances
+aws lambda list-functions -> list lambda
+aws iam list-users
+
+
+aws ec2 describe-instances | jq '.Reservations[].Instances[].InstanceId' or |yq
+
+chmod 777 aws-resource_tracker.sh
+./aws-resource_tracker.sh | more
+
+
+
+
+
+DAY - 08
+
+
+
+
+Shell Script integration with GitHub
+
+There are 2 ways:
+
+Using API (Application Interface) -> Kubernetes (can be used any programming language like shell (curl) -http protocol> postman , python (requests module), nodejs, etc ...) can be used http or Grpc protocols
+
+
+2. Using CLI -> Kubectl
+
+
+link of shell script used ------> https://www.youtube.com/redirect?event=video_description&redir_token=QUZZTVljSGRETHl3LW9HTnZheXFEQzdmTG9TVXxBTl9pYzRkSzBTVnlPTkh2Tlp1RVZjZTFjUEYtakt4dHN1UWk2Nk1Zb1pEUG82RE5ac0R1MkpuUFZoV0Qwb1kzLTFia1AzN2ZlRWk1VFpFMGlRTV84TWNrN2liT05Va0d4WFYw&q=https%3A%2F%2Fgithub.com%2Fiam-veeramalla%2Fshell-scripting-projects%2Fblob%2Fmain%2Fgithub-api%2Flist-users.sh&v=OuyNM5-r8P8
+
+https://github.com/iam-veeramalla/shell-scripting-projects/blob/main/github-api/list-users.sh
+
+
+github api doc  -->  pull requests
+
+
+				       Devops  -> Maintains Github
+
+				 	 |
+
+				   Multiple Teams
+
+					|
+
+				  Github Repository
+
+					^
+					|
+ 
+				  provide Access
+				       CI/CD
+
+
+create a org and repo in github
+
+
+
+
+
+DAY - 09    GIT & GITHUB
+
+
+> It is a version control System
+> used for sharing of code and versioning
+> CVS and SVN are centralized version control systems
+> whereas GIT is a Distributed version control System
+
+fork() -> The entire code is copied from a parent to a new child that is created and if any changes to the child code doesn't affect the original code.
+
+
+
+clear -> clear the screen
+ls -la -> shows a hidden folder named with extension .git
+ls .git
+git status -> There will be untracked files
+git add .. -> add files to track changes
+git diff -> shows the difference between the files that which changes are modified
+git commit -m "This is my first version of addition"
+git log -> shows the logs
+git log --oneline -> shows logs in 1 line
+cat <filename> -> shows the data in the file
+git reset --hard <commit_id> -> It goes to that particular version of commit_id
+git init -> initialize the repository
+
+
+
+
+DAY - 10    GIT BRANCHING STRATEGY
+
+
+
+Use Kubernetes/Kubernetes  GitHub repo
+
+Kubernetes is a open source project that can be hosted on GitHub.
+It has 3300 contributors
+
+Branch : separation of code
+
+
+Master branch
+Feature   "
+Release    "
+Hotfix "
+
+
+
+
+
+DAY - 11   GIT Interview Questions and Commands for DevOps
+
+
+
+git init -> it initialize the git local repo
+ls -a    -> It lists all files
+ls .git/hooks/pre-commit ->  To see that no sensitive content like passwords are uploaded
+git status -> shows the status of files
+ls -> used to list the files
+git diff -> shows changes that are made to a file
+git checkout -> To come out of a file
+git add -> adds files
+git push
+git remote -v
+git remote add <location/repo-name>
+git clone <.git>
+ssh-keygen -t rsa -> Generate public/pr. ivate key
+GitHub account -> profile -> settings -> SSH and GPG Keys -> SSh keys -> New SSH key -> Add SSH Key
+rm -rf <filename> -> To remove a file
+
+
+clone vs fork -> fork is used to create a copy of a repo whereas clone is used to download a repo
+
+
+git merge, git rebase or git cherry-pick -> picking the commits when there are 1 or 2 commits cherry-pick is easy
+
+git log <filename> and git checkout <filename> && git log -> Both commands does the same thing
+
+
+git cherry-pick <commit_id>  -> used where there are only 1 or 2 commits
+
+git checkout -b <filename> -> it checkout from the existing branch and creates, then switches to a new branch
+
+
+git merge <filename>
+git rebase --continue  -> merges in a linear fashion
+
+
+
+DAY - 12    How to deploy project on EC2 instance inside AWS
+
+
+github.com/verma-kunal/AWS-Session
+
+
+
+
+DAY - 13    AWS SERVICES
+
+
+EC2
+VPC  (private)           -         security , CIDR , Inbound, Outbound
+EBS	(Volume)
+S3   (Storage)
+IAM	(Identity & Access Management)
+Cloud Watch 	(Monitoring)
+LAMBDA (serverless compute)   ---> To send mail notifications
+Cloud Build Services
+
+
+ 	CI/CD(Continuous Integration/Continuous Delivery) ----> Jenkins
+	-Aws Code Pipeline
+	-Aws Code Build
+	-Aws Code Deploy
+
+9. AWS Configuration
+10. Billing and Costing
+11. AWS KMS(Key Management Service)
+12. Cloud Trail ----> We can get logs . It records activities
+	- Auditing
+	- Governing	
+	- Compliance
+13. AWS EKS 
+14. Fargate, ECS(Elastic Container Service)
+15. ELK (Elastic Search, Log Search and Kibana)
+
+
+
+
+
